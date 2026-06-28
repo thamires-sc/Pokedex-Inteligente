@@ -8,7 +8,12 @@ class Settings(BaseSettings):
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
 
     # CORS
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:5500", "http://127.0.0.1:5500"]
+    ALLOWED_ORIGINS: list[str] = [
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 
     # PokéAPI
     POKEAPI_BASE_URL: str = "https://pokeapi.co/api/v2"
