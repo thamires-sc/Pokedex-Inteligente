@@ -1,7 +1,10 @@
 from pydantic_settings import BaseSettings
+from pydantic import ConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = ConfigDict(env_file=".env", env_file_encoding="utf-8")
+
     # LLM
     OPENROUTER_API_KEY: str = ""
     OPENROUTER_MODEL: str = "mistralai/mistral-7b-instruct:free"
@@ -17,10 +20,6 @@ class Settings(BaseSettings):
 
     # PokéAPI
     POKEAPI_BASE_URL: str = "https://pokeapi.co/api/v2"
-
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
 
 
 settings = Settings()
