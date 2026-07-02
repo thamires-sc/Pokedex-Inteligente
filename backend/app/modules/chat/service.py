@@ -1,7 +1,13 @@
 import httpx
-from fastapi import HTTPException
 
 from app.core.config import settings
+from app.core.exceptions import (
+    LLMNotConfiguredException,
+    LLMInvalidKeyException,
+    LLMRateLimitException,
+    LLMUnavailableException,
+    LLMUnexpectedResponseException,
+)
 from app.modules.pokemon.schemas import PokemonDetail
 
 
@@ -58,10 +64,7 @@ async def ask_llm(pokemon: PokemonDetail, question: str) -> str:
     Retorna a resposta gerada pelo modelo.
     """
     if not settings.OPENROUTER_API_KEY:
-        raise HTTPException(
-            status_code=503,
-            detail="Chave da API LLM não configurada. Verifique o arquivo .env.",
-        )
+        raise LLMNotConfiguredException()
 
     headers = {
         "Authorization": f"Bearer {settings.OPENROUTER_API_KEY}",
@@ -88,17 +91,14 @@ async def ask_llm(pokemon: PokemonDetail, question: str) -> str:
         )
 
     if response.status_code == 401:
-        raise HTTPException(status_code=401, detail="Chave da API LLM inválida ou expirada.")
+        raise LLMInvalidKeyException()
     if response.status_code == 429:
-        raise HTTPException(status_code=429, detail="Limite de requisições atingido. Tente novamente em breve.")
+        raise LLMRateLimitException()
     if response.status_code != 200:
-        raise HTTPException(
-            status_code=502,
-            detail=f"Erro na API LLM (status {response.status_code}).",
-        )
+        raise LLMUnavailableException(status_code=response.status_code)
 
     data = response.json()
     try:
         return data["choices"][0]["message"]["content"].strip()
     except (KeyError, IndexError) as e:
-        raise HTTPException(status_code=502, detail=f"Resposta inesperada da API LLM: {e}")
+        raise LLMUnexpectedResponseException(detail=f"Resposta inesperada da API LLM: {e}")

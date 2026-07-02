@@ -1,8 +1,7 @@
 import httpx
-from fastapi import HTTPException
 
 from app.core.config import settings
-
+from app.core.exceptions import PokemonNotFoundException, ExternalAPIException
 
 async def get_pokemon_list(limit: int, offset: int) -> dict:
     """Busca a lista paginada de Pokémon na PokéAPI."""
@@ -10,7 +9,7 @@ async def get_pokemon_list(limit: int, offset: int) -> dict:
     async with httpx.AsyncClient(timeout=10) as client:
         response = await client.get(url, params={"limit": limit, "offset": offset})
         if response.status_code != 200:
-            raise HTTPException(status_code=502, detail="Erro ao buscar lista de Pokémon.")
+            raise ExternalAPIException("PokéAPI")
         return response.json()
 
 
@@ -20,9 +19,9 @@ async def get_pokemon_by_name_or_id(name_or_id: str) -> dict:
     async with httpx.AsyncClient(timeout=10) as client:
         response = await client.get(url)
         if response.status_code == 404:
-            raise HTTPException(status_code=404, detail=f"Pokémon '{name_or_id}' não encontrado.")
+            raise PokemonNotFoundException(name_or_id)
         if response.status_code != 200:
-            raise HTTPException(status_code=502, detail="Erro ao buscar detalhes do Pokémon.")
+            raise ExternalAPIException("PokéAPI")
         return response.json()
 
 
