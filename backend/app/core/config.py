@@ -7,7 +7,7 @@ class Settings(BaseSettings):
 
     # LLM
     OPENROUTER_API_KEY: str = ""
-    OPENROUTER_MODEL: str = "mistralai/mistral-7b-instruct:free"
+    OPENROUTER_MODEL: str = "nvidia/nemotron-3-ultra-550b-a55b:free"
     OPENROUTER_BASE_URL: str = "https://openrouter.ai/api/v1"
 
     # CORS
