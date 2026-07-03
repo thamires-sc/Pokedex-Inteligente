@@ -167,6 +167,7 @@ Abra o `.env` e preencha sua chave do OpenRouter:
 OPENROUTER_API_KEY=sua_chave_aqui
 OPENROUTER_MODEL=nvidia/nemotron-3-ultra-550b-a55b:free
 ```
+> **Observação:** Durante o desenvolvimento, a chave fornecida pela levva retornou o erro **"No endpoints available matching your guardrail restrictions and data policy"**. Para validar a integração com o LLM, foi utilizada uma chave própria. Para executar a aplicação, basta informar uma chave válida do OpenRouter no arquivo `.env`.
 
 ### 5. Suba o backend
 
