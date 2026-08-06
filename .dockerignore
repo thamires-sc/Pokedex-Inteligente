@@ -1,0 +1,21 @@
+# Ambiente virtual
+venv/
+
+# Variáveis de ambiente
+.env
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Git
+.git/
+.gitignore
+
+# VSCode
+.vscode/
+
+# Docker
+docker-compose.yml
