@@ -196,6 +196,45 @@ pytest tests/ -v
 
 ---
 
+## 🐳 Rodando com Docker
+
+Você também pode rodar a aplicação completa com Docker, sem precisar configurar o ambiente manualmente.
+
+### Pré-requisitos
+- [Docker](https://www.docker.com/products/docker-desktop/) instalado
+
+### 1. Configure o .env
+
+```bash
+# Windows
+copy backend\.env.example backend\.env
+
+# Linux/Mac
+cp backend/.env.example backend/.env
+```
+
+Abra o `.env` e preencha sua chave do OpenRouter:
+
+```env
+OPENROUTER_API_KEY=sua_chave_aqui
+```
+
+### 2. Suba os containers
+
+```bash
+docker-compose up --build
+```
+
+### 3. Acesse a aplicação
+
+- **Frontend**: http://localhost
+- **Backend**: http://localhost:8000
+- **Swagger**: http://localhost:8000/docs
+
+Para parar os containers: `Ctrl+C`
+
+---
+
 ## 🔌 API
 
 A aplicação disponibiliza os seguintes endpoints:
