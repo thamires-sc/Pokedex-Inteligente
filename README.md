@@ -231,19 +231,3 @@ docker-compose up --build
 Para parar os containers: `Ctrl+C`
 
 ---
-
-## 🔌 API
-
-A aplicação disponibiliza os seguintes endpoints:
-
-| Método | Endpoint |
-|--------|----------|
-| GET | `/api/pokemon` |
-| GET | `/api/pokemon/{name_or_id}` |
-| POST | `/api/chat` |
-
-Documentação interativa disponível em:
-
-http://127.0.0.1:8000/docs
-
----
