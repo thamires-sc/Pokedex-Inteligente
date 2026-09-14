@@ -1,10 +1,8 @@
 # 🎮 Pokédex Inteligente
 
-Aplicação Full Stack desenvolvida como desafio técnico utilizando FastAPI, HTML, CSS e JavaScript.
+Aplicação Full Stack desenvolvida com FastAPI, HTML, CSS e JavaScript.
 
 A aplicação consome a PokéAPI para disponibilizar informações sobre Pokémon e integra um modelo de linguagem (LLM) via OpenRouter para responder perguntas contextualizadas sobre o Pokémon selecionado.
-
-Desenvolvido por **Thamires dos Santos Candido**.
 
 ![Demo da aplicação](docs/demo.gif)
 
@@ -51,7 +49,7 @@ Desenvolvido por **Thamires dos Santos Candido**.
 ## 📐 Decisões Técnicas
 
 ### Por que FastAPI?
-Optei pelo FastAPI por ser um framework moderno para desenvolvimento de APIs em Python e por oferecer recursos que atendiam bem às necessidades deste projeto, como validação automática dos dados com Pydantic, documentação interativa dos endpoints e uma estrutura simples para organizar a aplicação. Isso permitiu focar no desenvolvimento das funcionalidades e na organização do código.
+Optei pelo FastAPI por ser um framework moderno para desenvolvimento de APIs em Python e por oferecer recursos que atendiam bem às necessidades deste projeto, como validação automática dos dados com Pydantic, documentação interativa dos endpoints e uma estrutura simples para organizar a aplicação.
 
 ### Arquitetura por Módulos
 O backend foi organizado por módulos de domínio (`pokemon` e `chat`), cada um contendo seus próprios arquivos de `router`, `service` e `schemas`. Essa organização separa as responsabilidades de cada funcionalidade, facilita a manutenção do código e torna mais simples a adição de novos módulos no futuro.
@@ -167,7 +165,6 @@ Abra o `.env` e preencha sua chave do OpenRouter:
 OPENROUTER_API_KEY=sua_chave_aqui
 OPENROUTER_MODEL=nvidia/nemotron-3-ultra-550b-a55b:free
 ```
-> **Observação:** Durante o desenvolvimento, a chave fornecida pela levva retornou o erro **"No endpoints available matching your guardrail restrictions and data policy"**. Como essa configuração depende da conta associada à chave, a integração foi validada utilizando uma chave própria do OpenRouter. Para executar a aplicação, basta informar uma chave válida do OpenRouter no arquivo `.env`.
 
 ### 5. Suba o backend
 
@@ -250,10 +247,3 @@ Documentação interativa disponível em:
 http://127.0.0.1:8000/docs
 
 ---
-
-## 🚀 Possíveis Melhorias
-
-- Cache das respostas da PokéAPI para reduzir chamadas externas.
-- Histórico de conversas do chat.
-- Implementar filtros por tipo de Pokémon.
-- Deploy da aplicação.
